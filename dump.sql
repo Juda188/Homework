@@ -22,4 +22,11 @@ INSERT INTO library VALUES(1,1,1,2,'21.10.1986',444,1);
 INSERT INTO library VALUES(2,2,2,1,'21.11.2017',298,3);
 INSERT INTO library VALUES(3,3,3,3,'31.10.1975',654,2);
 INSERT INTO library VALUES(4,4,1,2,'24.08.2013',243,1);
+SELECT b.book_name, a.firstname, a.surname, l.genre, l.release, l.count_of_pages, t.description FROM library l 
+JOIN book b ON l.pk = b.pk
+JOIN author a ON l.pk = a.pk
+JOIN tag t ON l.pk = t.pk;
+SELECT a.firstname, a.surname, COUNT(l.author_pk) FROM author a LEFT JOIN library l ON a.pk = l.author_pk GROUP BY a.firstname;
+SELECT release, COUNT(*) FROM library GROUP bY release;
+SELECT c.genre, COUNT(l.genre) FROM category c LEFT JOIN library l ON c.pk = l.genre GROUP BY c.genre;
 COMMIT;
